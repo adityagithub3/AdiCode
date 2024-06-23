@@ -1,0 +1,36 @@
+pip install nltk language_tool_python
+
+
+import openai
+
+# Replace 'your-api-key' with your actual OpenAI API key
+openai.api_key = 'your-api-key'
+
+def get_writing_feedback(text):
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=f"Provide feedback and suggestions to improve the following text:\n\n{text}",
+        max_tokens=300,
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+    feedback = response.choices[0].text.strip()
+    return feedback
+
+def main():
+    print("Welcome to ProseMentor, your AI English Writer Coach!")
+    print("Please enter the text you want feedback on (type 'exit' to quit):")
+
+    while True:
+        user_input = input("\nYour text: ")
+        if user_input.lower() == 'exit':
+            print("Goodbye!")
+            break
+
+        feedback = get_writing_feedback(user_input)
+        print("\nProseMentor Feedback and Suggestions:")
+        print(feedback)
+
+if __name__ == "__main__":
+    main()
