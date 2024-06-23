@@ -1,0 +1,51 @@
+pip install pandas matplotlib
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Sample Data
+data = {
+    'Treatment': ['Chemotherapy', 'Bone Marrow Transplant'],
+    'Benefited': [150, 85],
+    'Not Benefited': [50, 15]
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# Function to display the DataFrame
+def display_data(df):
+    print(df)
+
+# Function to plot the data
+def plot_data(df):
+    df.set_index('Treatment')[['Benefited', 'Not Benefited']].plot(kind='bar', stacked=True)
+    plt.title('Number of Patients Benefiting from Treatments')
+    plt.xlabel('Treatment')
+    plt.ylabel('Number of Patients')
+    plt.show()
+
+# Main function
+def main():
+    while True:
+        print("\nBiostatistical Data Application")
+        print("1. Display Data")
+        print("2. Plot Data")
+        print("3. Exit")
+        
+        choice = input("Enter your choice: ")
+        
+        if choice == '1':
+            display_data(df)
+        elif choice == '2':
+            plot_data(df)
+        elif choice == '3':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
+
+
+To access the application , search - python biostatistics_app.py
